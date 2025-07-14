@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Contact Form</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${contact.id != null} ? '✏️ Edit Contact' : '➕ Add Contact'"></h1>
+
+    <form th:action="@{/contacts/save}" th:object="${contact}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <label for="name">Name</label>
+        <input type="text" id="name" th:field="*{name}" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" th:field="*{email}" required />
+
+        <label for="phone">Phone</label>
+        <input type="text" id="phone" th:field="*{phone}" required />
+
+        <button type="submit">💾 Save Contact</button>
+    </form>
+
+    <a class="back-link" th:href="@{/}">← Back to Contact List</a>
+</div>
+</body>
+</html>

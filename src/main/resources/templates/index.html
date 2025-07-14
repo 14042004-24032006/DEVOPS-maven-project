@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Contact Book</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>📒 Contact Book</h1>
+
+    <div class="actions">
+        <a class="btn-primary" th:href="@{/contacts/new}">➕ Add New Contact</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th><th>Email</th><th>Phone</th><th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="contact : ${contacts}">
+                <td th:text="${contact.name}"></td>
+                <td th:text="${contact.email}"></td>
+                <td th:text="${contact.phone}"></td>
+                <td class="action-links">
+                    <a class="btn-edit" th:href="@{/contacts/edit/{id}(id=${contact.id})}">✏️ Edit</a>
+                    <a class="btn-delete" th:href="@{/contacts/delete/{id}(id=${contact.id})}" onclick="return confirm('Are you sure?')">🗑️ Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
